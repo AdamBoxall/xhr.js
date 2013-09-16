@@ -12,7 +12,7 @@
         root.xhr = factory();
     }
 
-}(this, function() {
+})(this, function() {
 
     function createXhr(callback) {
 
@@ -33,9 +33,18 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        callback(null, xhr.responseText);
+                        var contentType = xhr.getResponseHeader('Content-Type');
+                        if (contentType === 'application/json') {
+                            try {
+                                callback(null, JSON.parse(xhr.responseText), xhr);
+                            } catch (e) {
+                                callback(e.message, null, xhr);
+                            }
+                        } else {
+                            callback(null, xhr.responseText, xhr);
+                        }
                     } else {
-                        callback(xhr.statusText);
+                        callback(xhr.statusText, null, xhr);
                     }
                 }
             }
