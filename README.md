@@ -8,7 +8,7 @@ Modern browsers make AJAX requests using the Window's XMLHttpRequest object. Thi
 
 ### Why not just use jQuery?
 
-In order to use jQuery.ajax you have to include the entire jQuery core into your page. If performance is a big factor in your JS application, then it could be preferable to use a collection of lightweight modules instead, like this. xhr.js weighs in at a tiny 1.14 KB.
+In order to use jQuery.ajax you have to include the entire jQuery core into your page. If performance is a big factor in your JS application, then it could be preferable to use a collection of lightweight modules instead; `xhr.min.js` weighs in at a tiny 1.3 KB.
 
 ### Installation
 
