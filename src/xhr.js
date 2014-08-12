@@ -27,8 +27,6 @@
             xhr = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
         if (callback) {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
@@ -91,6 +89,8 @@
 
             var xhr = createXhr(callback);
             xhr.open(method, options.uri, true);
+            
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
             if (data) {
                 xhr.setRequestHeader('Content-Type', (typeof data === 'string')
